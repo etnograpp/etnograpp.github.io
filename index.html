@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ETNOGRAPP — Cuaderno etnográfico inteligente</title>
+<meta name="description" content="Aplicación Android para trabajo de campo cualitativo. No piensa por ti. Te acompaña a mirar.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --teal: #1B3535;
+    --teal-mid: #2A4E4E;
+    --teal-light: #3D6B6B;
+    --orange: #C87230;
+    --orange-light: #E8924A;
+    --cream: #F7F4EF;
+    --cream-dark: #EDE9E1;
+    --text: #1B3535;
+    --muted: #5A7070;
+    --white: #FFFFFF;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--text); font-size: 16px; line-height: 1.7; }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(247,244,239,0.94); backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--cream-dark);
+    padding: 14px 32px; display: flex; align-items: center; justify-content: space-between;
+  }
+  nav img { height: 32px; }
+  nav a {
+    font-size: 14px; font-weight: 500;
+    background: var(--teal); color: var(--white);
+    padding: 8px 20px; border-radius: 4px; text-decoration: none;
+    transition: background 0.2s;
+  }
+  nav a:hover { background: var(--teal-mid); }
+
+  .hero {
+    min-height: 100vh; display: flex; flex-direction: column; justify-content: center;
+    padding: 120px 32px 80px; max-width: 800px; margin: 0 auto;
+  }
+  .hero-tag {
+    display: inline-block; font-size: 12px; font-weight: 500;
+    letter-spacing: 0.12em; text-transform: uppercase; color: var(--orange);
+    border: 1px solid var(--orange); border-radius: 2px;
+    padding: 4px 10px; margin-bottom: 32px;
+  }
+  .hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(42px, 7vw, 72px); line-height: 1.08;
+    color: var(--teal); margin-bottom: 28px; letter-spacing: -0.02em;
+  }
+  .hero h1 em { font-style: italic; color: var(--orange); }
+  .hero-sub { font-size: 18px; color: var(--muted); font-weight: 300; max-width: 520px; line-height: 1.6; margin-bottom: 48px; }
+  .hero-cta { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
+  .btn-primary {
+    background: var(--teal); color: var(--white);
+    padding: 14px 32px; border-radius: 4px; text-decoration: none;
+    font-weight: 500; font-size: 15px; display: inline-block;
+    transition: background 0.2s, transform 0.1s;
+  }
+  .btn-primary:hover { background: var(--teal-mid); transform: translateY(-1px); }
+  .btn-secondary {
+    color: var(--teal); font-weight: 500; font-size: 15px;
+    text-decoration: none; border-bottom: 1px solid var(--teal);
+    padding-bottom: 2px; transition: color 0.2s;
+  }
+  .btn-secondary:hover { color: var(--orange); border-color: var(--orange); }
+  .hero-note { margin-top: 24px; font-size: 13px; color: var(--muted); display: flex; align-items: center; gap: 8px; }
+  .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--orange); flex-shrink: 0; }
+
+  .filosofia { background: var(--teal); padding: 80px 32px; }
+  .filosofia .container { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+  .filosofia-quote { font-family: 'DM Serif Display', serif; font-size: clamp(28px, 4vw, 42px); color: var(--white); line-height: 1.2; letter-spacing: -0.01em; }
+  .filosofia-quote em { color: var(--orange-light); font-style: italic; }
+  .filosofia-text { color: rgba(255,255,255,0.7); font-weight: 300; font-size: 16px; line-height: 1.7; }
+  .filosofia-text strong { color: var(--white); font-weight: 500; }
+
+  section { padding: 80px 32px; }
+  .container { max-width: 800px; margin: 0 auto; }
+  .section-label { font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--orange); margin-bottom: 16px; display: block; }
+  .section-title { font-family: 'DM Serif Display', serif; font-size: clamp(28px, 4vw, 40px); color: var(--teal); line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 20px; }
+  .section-body { color: var(--muted); font-weight: 300; max-width: 560px; }
+
+  .que-es-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1px; background: var(--cream-dark); border: 1px solid var(--cream-dark); margin-top: 48px; }
+  .que-es-item { background: var(--cream); padding: 28px 24px; }
+  .que-es-num { font-family: 'DM Serif Display', serif; font-size: 36px; color: var(--orange); line-height: 1; margin-bottom: 12px; }
+  .que-es-item h3 { font-size: 15px; font-weight: 500; margin-bottom: 8px; color: var(--teal); }
+  .que-es-item p { font-size: 14px; color: var(--muted); line-height: 1.6; }
+
+  .contextos-list { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 40px; }
+  .contexto-tag { border: 1px solid var(--teal); color: var(--teal); padding: 8px 16px; border-radius: 2px; font-size: 13px; font-weight: 500; }
+
+  .paises { background: var(--cream-dark); }
+  .paises-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 12px; margin-top: 40px; }
+  .pais-card { background: var(--white); padding: 16px; border-radius: 4px; border: 1px solid var(--cream-dark); text-align: center; }
+  .pais-flag { font-size: 28px; margin-bottom: 6px; }
+  .pais-name { font-size: 13px; font-weight: 500; color: var(--teal); }
+  .paises-stat { margin-top: 40px; display: flex; gap: 48px; flex-wrap: wrap; }
+  .stat-num { font-family: 'DM Serif Display', serif; font-size: 48px; color: var(--teal); line-height: 1; }
+  .stat-label { font-size: 13px; color: var(--muted); margin-top: 4px; }
+
+  /* PROYECTO EN FORMACIÓN */
+  .formacion { background: var(--white); }
+  .formacion-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px; margin-top: 40px; }
+  .formacion-item { border-left: 2px solid var(--orange); padding-left: 20px; }
+  .formacion-item h3 { font-size: 14px; font-weight: 500; color: var(--teal); margin-bottom: 6px; }
+  .formacion-item p { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+  /* PRIVACIDAD */
+  .privacidad { background: var(--teal); padding: 80px 32px; }
+  .privacidad .section-label { color: var(--orange-light); }
+  .privacidad .section-title { color: var(--white); }
+  .privacidad-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; margin-top: 48px; }
+  .privacidad-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 6px; padding: 24px; }
+  .privacidad-card h3 { font-size: 15px; font-weight: 500; color: var(--white); margin-bottom: 10px; }
+  .privacidad-card p { font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.7; }
+  .privacidad-card .icono { font-size: 24px; margin-bottom: 14px; display: block; }
+  .privacidad-nota { margin-top: 40px; background: rgba(200,114,48,0.15); border: 1px solid rgba(200,114,48,0.3); border-radius: 6px; padding: 20px 24px; }
+  .privacidad-nota p { font-size: 14px; color: rgba(255,255,255,0.75); line-height: 1.7; }
+  .privacidad-nota strong { color: var(--orange-light); }
+
+  /* BETA */
+  .beta { background: var(--teal); text-align: center; padding: 100px 32px; border-top: 1px solid rgba(255,255,255,0.08); }
+  .beta h2 { font-family: 'DM Serif Display', serif; font-size: clamp(32px, 5vw, 52px); color: var(--white); line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 20px; }
+  .beta h2 em { color: var(--orange-light); font-style: italic; }
+  .beta p { color: rgba(255,255,255,0.65); font-weight: 300; margin-bottom: 40px; max-width: 480px; margin-left: auto; margin-right: auto; }
+  .beta .btn-primary { background: var(--orange); font-size: 16px; padding: 16px 40px; }
+  .beta .btn-primary:hover { background: var(--orange-light); }
+  .beta-note { margin-top: 20px; font-size: 13px; color: rgba(255,255,255,0.4); }
+
+  footer { background: #111E1E; padding: 40px 32px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+  footer img { height: 28px; opacity: 0.8; }
+  footer p { font-size: 13px; color: rgba(255,255,255,0.35); }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+  .hero-tag { animation: fadeUp 0.6s ease both; }
+  .hero h1 { animation: fadeUp 0.6s 0.1s ease both; }
+  .hero-sub { animation: fadeUp 0.6s 0.2s ease both; }
+  .hero-cta { animation: fadeUp 0.6s 0.3s ease both; }
+  .hero-note { animation: fadeUp 0.6s 0.4s ease both; }
+
+  @media (max-width: 640px) {
+    nav { padding: 12px 20px; }
+    section { padding: 60px 20px; }
+    .filosofia { padding: 60px 20px; }
+    .filosofia .container { grid-template-columns: 1fr; gap: 32px; }
+    .privacidad { padding: 60px 20px; }
+    .beta { padding: 70px 20px; }
+    footer { padding: 30px 20px; flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <img src="logo.png" alt="ETNOGRAPP">
+  <a href="https://forms.gle/VUe7GHghqso8nhs98" target="_blank">Unirse a la beta</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <span class="hero-tag">Beta abierta · Android · Proyecto en formación</span>
+  <h1>El cuaderno de campo<br>que <em>no piensa</em><br>por ti.</h1>
+  <p class="hero-sub">
+    ETNOGRAPP acompaña el trabajo metodológico previo al análisis: observación, revisión, unidades de campo y preguntas emergentes. Sin inteligencia artificial externa. Sin nube obligatoria.
+  </p>
+  <div class="hero-cta">
+    <a href="https://forms.gle/VUe7GHghqso8nhs98" target="_blank" class="btn-primary">Solicitar acceso beta gratuito</a>
+    <a href="#que-es" class="btn-secondary">Conocer más</a>
+  </div>
+  <p class="hero-note">
+    <span class="dot"></span>
+    Actualmente gratuita. El acceso seguirá siendo accesible cuando el proyecto madure.
+  </p>
+</div>
+
+<!-- FILOSOFIA -->
+<div class="filosofia">
+  <div class="container">
+    <div class="filosofia-quote">
+      "No piensa por ti.<br><em>Te acompaña<br>a mirar.</em>"
+    </div>
+    <div class="filosofia-text">
+      <p>ETNOGRAPP no reemplaza al investigador, al arqueólogo, al perito ni al profesor guía.</p>
+      <br>
+      <p>Ordena el trabajo metodológico <strong>antes del análisis</strong>: el registro, la revisión, las unidades de campo y las preguntas que emergen en terreno.</p>
+      <br>
+      <p>Los datos viven en tu dispositivo. <strong>Sin servidor propio. Sin nube obligatoria.</strong></p>
+    </div>
+  </div>
+</div>
+
+<!-- QUE ES -->
+<section id="que-es">
+  <div class="container">
+    <span class="section-label">Qué es</span>
+    <h2 class="section-title">Un andamiaje metodológico<br>para el trabajo de campo</h2>
+    <p class="section-body">No es una app de notas. No es un software de análisis. Es la etapa que faltaba entre el campo y el análisis.</p>
+    <div class="que-es-grid">
+      <div class="que-es-item">
+        <div class="que-es-num">01</div>
+        <h3>Diario de campo</h3>
+        <p>Registro rápido y ampliación posterior con estructura metodológica.</p>
+      </div>
+      <div class="que-es-item">
+        <div class="que-es-num">02</div>
+        <h3>Revisión posterior</h3>
+        <p>Vuelve sobre cada observación y construye comprensión con tiempo.</p>
+      </div>
+      <div class="que-es-item">
+        <div class="que-es-num">03</div>
+        <h3>Unidades de campo</h3>
+        <p>Organiza lo observado en unidades significativas vinculadas entre sí.</p>
+      </div>
+      <div class="que-es-item">
+        <div class="que-es-num">04</div>
+        <h3>Preguntas emergentes</h3>
+        <p>Registra lo que el campo te hace preguntar, sin forzar respuestas.</p>
+      </div>
+      <div class="que-es-item">
+        <div class="que-es-num">05</div>
+        <h3>Coach metodológico</h3>
+        <p>Local, sin IA externa. Acompaña la formulación sin interpretar por ti.</p>
+      </div>
+      <div class="que-es-item">
+        <div class="que-es-num">06</div>
+        <h3>Exportación TXT</h3>
+        <p>Material ordenado, listo para análisis posterior en NVivo, Atlas.ti u otros.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTEXTOS -->
+<section style="background: var(--white);">
+  <div class="container">
+    <span class="section-label">Para quién</span>
+    <h2 class="section-title">Contextos de trabajo diferenciados</h2>
+    <p class="section-body">La app se adapta a tu práctica, no al revés. Cada contexto tiene vocabulario, advertencias y orientaciones propias.</p>
+    <div class="contextos-list">
+      <span class="contexto-tag">Etnográfico / exploratorio</span>
+      <span class="contexto-tag">Académico / tesista</span>
+      <span class="contexto-tag">Ciencia social aplicada</span>
+      <span class="contexto-tag">Medio humano / SEIA</span>
+      <span class="contexto-tag">Socioambiental / territorial</span>
+      <span class="contexto-tag">Arqueológico</span>
+      <span class="contexto-tag">Patrimonio cultural</span>
+      <span class="contexto-tag">Peritaje antropológico</span>
+    </div>
+  </div>
+</section>
+
+<!-- PAISES -->
+<section class="paises">
+  <div class="container">
+    <span class="section-label">Comunidad beta</span>
+    <h2 class="section-title">Ya en 10 países</h2>
+    <p class="section-body">Investigadores, tesistas, arqueólogos, trabajadores sociales y peritos que forman parte de la beta desde el primer día.</p>
+    <div class="paises-stat">
+      <div><div class="stat-num">27+</div><div class="stat-label">Investigadores activos</div></div>
+      <div><div class="stat-num">10</div><div class="stat-label">Países</div></div>
+      <div><div class="stat-num">v0.3</div><div class="stat-label">Versión actual</div></div>
+    </div>
+    <div class="paises-grid">
+      <div class="pais-card"><div class="pais-flag">🇨🇱</div><div class="pais-name">Chile</div></div>
+      <div class="pais-card"><div class="pais-flag">🇦🇷</div><div class="pais-name">Argentina</div></div>
+      <div class="pais-card"><div class="pais-flag">🇨🇴</div><div class="pais-name">Colombia</div></div>
+      <div class="pais-card"><div class="pais-flag">🇵🇪</div><div class="pais-name">Perú</div></div>
+      <div class="pais-card"><div class="pais-flag">🇲🇽</div><div class="pais-name">México</div></div>
+      <div class="pais-card"><div class="pais-flag">🇪🇸</div><div class="pais-name">España</div></div>
+      <div class="pais-card"><div class="pais-flag">🇪🇨</div><div class="pais-name">Ecuador</div></div>
+      <div class="pais-card"><div class="pais-flag">🇬🇹</div><div class="pais-name">Guatemala</div></div>
+      <div class="pais-card"><div class="pais-flag">🇩🇴</div><div class="pais-name">R. Dominicana</div></div>
+      <div class="pais-card"><div class="pais-flag">🌎</div><div class="pais-name">Y creciendo</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROYECTO EN FORMACIÓN -->
+<section class="formacion">
+  <div class="container">
+    <span class="section-label">Proyecto en formación</span>
+    <h2 class="section-title">Esto es solo el comienzo</h2>
+    <p class="section-body">ETNOGRAPP es un proyecto independiente en desarrollo activo. La versión actual es funcional y estable, pero hay mucho más por construir.</p>
+    <div class="formacion-grid">
+      <div class="formacion-item">
+        <h3>Módulo tesista</h3>
+        <p>Marco referencial como guía de observación, advertencias anti-calce teoría-campo, apoyo metodológico para tesis de pregrado y posgrado.</p>
+      </div>
+      <div class="formacion-item">
+        <h3>Fichas profesionales</h3>
+        <p>Fichas especializadas para arqueología, patrimonio, peritaje antropológico y medio humano SEIA, configurables por contexto.</p>
+      </div>
+      <div class="formacion-item">
+        <h3>Exportación avanzada</h3>
+        <p>Exportación estructurada por secciones, compatible con flujos de trabajo en NVivo, Atlas.ti y MAXQDA.</p>
+      </div>
+      <div class="formacion-item">
+        <h3>Multidioma</h3>
+        <p>Adaptación a tradiciones metodológicas en portugués, inglés y otros idiomas, con revisión académica por cada idioma.</p>
+      </div>
+      <div class="formacion-item">
+        <h3>Instrumentos de campo</h3>
+        <p>Entrevistas semi-estructuradas, focus group, guías de observación derivadas del marco teórico.</p>
+      </div>
+      <div class="formacion-item">
+        <h3>Tu feedback importa</h3>
+        <p>Esta beta existe para aprender de quienes hacen trabajo de campo real. Cada sugerencia informa las próximas versiones.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRIVACIDAD -->
+<div class="privacidad" id="privacidad">
+  <div class="container">
+    <span class="section-label">Privacidad</span>
+    <h2 class="section-title" style="color: var(--white);">Tus datos son tuyos.<br>Siempre.</h2>
+
+    <div class="privacidad-grid">
+      <div class="privacidad-card">
+        <span class="icono">📱</span>
+        <h3>Todo queda en tu dispositivo</h3>
+        <p>Todos tus proyectos, observaciones, diarios, unidades de campo y registros se almacenan exclusivamente en tu teléfono o tablet. Nunca salen de él.</p>
+      </div>
+      <div class="privacidad-card">
+        <span class="icono">🔒</span>
+        <h3>Sin servidor propio</h3>
+        <p>ETNOGRAPP no tiene servidores propios donde se almacenen datos de usuarios. No existe ninguna base de datos externa con tu información de campo.</p>
+      </div>
+      <div class="privacidad-card">
+        <span class="icono">✈️</span>
+        <h3>Funciona sin internet</h3>
+        <p>Toda la funcionalidad de trabajo de campo opera completamente offline. No necesitas conexión para registrar, revisar ni exportar tu material.</p>
+      </div>
+      <div class="privacidad-card">
+        <span class="icono">🚫</span>
+        <h3>Sin acceso técnico posible</h3>
+        <p>Al no conectarse a servidores externos durante el trabajo, técnicamente no existe ningún canal por el cual ETNOGRAPP o su desarrollador puedan acceder a tus datos.</p>
+      </div>
+      <div class="privacidad-card">
+        <span class="icono">🤝</span>
+        <h3>Sin venta de datos</h3>
+        <p>ETNOGRAPP no recopila, analiza ni comercializa información sobre tu investigación, participantes, comunidades ni contextos de trabajo.</p>
+      </div>
+      <div class="privacidad-card">
+        <span class="icono">📤</span>
+        <h3>Exportación bajo tu control</h3>
+        <p>Puedes exportar tu material en cualquier momento a tu propio dispositivo. Tú decides qué hacer con él y a dónde va.</p>
+      </div>
+    </div>
+
+    <div class="privacidad-nota">
+      <p><strong>Nota importante sobre la beta:</strong> El formulario de registro recopila solo tu nombre, país, disciplina y contacto para coordinación de la beta. Esta información no se vincula con ningún dato de campo generado dentro de la app y no será compartida con terceros.</p>
+    </div>
+  </div>
+</div>
+
+<!-- BETA CTA -->
+<div class="beta" id="beta">
+  <h2>Únete a la<br><em>beta gratuita</em></h2>
+  <p>Acceso por código, para investigadores que hacen trabajo de campo real. Compromiso de uso responsable y feedback breve.</p>
+  <a href="https://forms.gle/VUe7GHghqso8nhs98" target="_blank" class="btn-primary">Solicitar acceso beta</a>
+  <p class="beta-note">Android · Local-first · Sin servidor propio · Datos en tu dispositivo · Proyecto en formación</p>
+</div>
+
+<footer>
+  <img src="logo.png" alt="ETNOGRAPP">
+  <p>© 2026 ETNOGRAPP · Proyecto independiente · Chile · <a href="#privacidad" style="color: rgba(255,255,255,0.4); text-decoration: none;">Privacidad</a></p>
+</footer>
+
+</body>
+</html>
