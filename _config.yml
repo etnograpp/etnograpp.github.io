@@ -1,0 +1,14 @@
+title: ETNOGRAPP
+description: Reflexiones de campo — notas metodológicas, dilemas y tensiones del trabajo etnográfico.
+url: https://etnograpp.com
+lang: es
+
+# Las reflexiones quedan en https://etnograpp.com/reflexiones/titulo-del-texto/
+permalink: /reflexiones/:title/
+
+# No proceses estos archivos como Jekyll (se copian tal cual).
+keep_files:
+  - logo.png
+
+exclude:
+  - README.md
