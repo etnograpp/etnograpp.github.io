@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{ page.title }} — ETNOGRAPP</title>
+<meta name="description" content="{{ page.resumen | default: page.title }}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --teal: #1B3535; --teal-mid: #2A4E4E; --orange: #C87230;
+    --cream: #F7F4EF; --cream-dark: #EDE9E1; --text: #1B3535;
+    --muted: #5A7070; --white: #FFFFFF;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--text); font-size: 16px; line-height: 1.7; }
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(247,244,239,0.94); backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--cream-dark);
+    padding: 14px 32px; display: flex; align-items: center; justify-content: space-between;
+  }
+  nav img { height: 32px; }
+  nav a.cta { font-size: 14px; font-weight: 500; background: var(--teal); color: var(--white); padding: 8px 20px; border-radius: 4px; text-decoration: none; }
+  article { max-width: 720px; margin: 0 auto; padding: 140px 32px 80px; }
+  .eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--orange); display: block; margin-bottom: 16px; }
+  h1 { font-family: 'DM Serif Display', serif; font-size: clamp(32px, 5vw, 48px); line-height: 1.12; color: var(--teal); letter-spacing: -0.02em; margin-bottom: 20px; }
+  .meta { font-size: 14px; color: var(--muted); font-weight: 300; padding-bottom: 28px; border-bottom: 1px solid var(--cream-dark); margin-bottom: 40px; }
+  .contenido p { margin-bottom: 22px; color: var(--text); font-weight: 300; }
+  .contenido h2 { font-family: 'DM Serif Display', serif; font-size: 26px; color: var(--teal); margin: 40px 0 16px; }
+  .contenido blockquote { border-left: 3px solid var(--orange); padding-left: 20px; margin: 28px 0; font-style: italic; color: var(--muted); }
+  .contenido a { color: var(--orange); }
+  .cierre { margin-top: 56px; padding: 28px; background: var(--white); border: 1px solid var(--cream-dark); border-radius: 6px; }
+  .cierre p { font-size: 15px; color: var(--muted); font-weight: 300; margin-bottom: 16px; }
+  .volver { display: inline-block; margin-top: 40px; font-size: 14px; color: var(--teal); text-decoration: none; border-bottom: 1px solid var(--teal); padding-bottom: 2px; }
+  footer { text-align: center; padding: 40px 32px; font-size: 13px; color: var(--muted); border-top: 1px solid var(--cream-dark); }
+  @media (max-width: 600px) { nav { padding: 12px 20px; } article { padding: 110px 20px 60px; } }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/"><img src="/logo.png" alt="ETNOGRAPP"></a>
+  <a class="cta" href="/">Conocer la app</a>
+</nav>
+
+<article>
+  <span class="eyebrow">Reflexiones de campo</span>
+  <h1>{{ page.title }}</h1>
+  <div class="meta">
+    {% if page.autor %}Por {{ page.autor }}{% if page.afiliacion %} · {{ page.afiliacion }}{% endif %} · {% endif %}
+    {{ page.date | date: "%d de %B de %Y" }}
+  </div>
+
+  <div class="contenido">
+    {{ content }}
+  </div>
+
+  <div class="cierre">
+    <p>ETNOGRAPP no piensa por ti. Te acompaña a mirar.</p>
+    <a class="cta" href="/" style="font-size:14px;font-weight:500;background:var(--teal);color:var(--white);padding:10px 22px;border-radius:4px;text-decoration:none;">Conocer la app</a>
+  </div>
+
+  <a class="volver" href="/reflexiones.html">← Todas las reflexiones</a>
+</article>
+
+<footer>ETNOGRAPP · etnograpp.com</footer>
+
+</body>
+</html>
