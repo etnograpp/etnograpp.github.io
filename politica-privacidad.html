@@ -1,187 +1,118 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Política de Privacidad — ETNOGRAPP</title>
-  <meta name="description" content="Política de privacidad de ETNOGRAPP. Datos locales, sin servidor propio y GPS opcional.">
-  <style>
-    :root {
-      --teal: #1B3535;
-      --orange: #C87230;
-      --cream: #F7F4EF;
-      --cream-dark: #EDE9E1;
-      --text: #1B3535;
-      --muted: #5A7070;
-      --white: #FFFFFF;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: var(--cream);
-      color: var(--text);
-      line-height: 1.7;
-    }
-
-    header {
-      background: var(--teal);
-      color: var(--white);
-      padding: 42px 22px;
-      text-align: center;
-    }
-
-    header h1 {
-      margin: 0;
-      font-size: 34px;
-      line-height: 1.2;
-    }
-
-    header p {
-      margin: 12px 0 0;
-      color: rgba(255,255,255,0.78);
-    }
-
-    main {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 48px 22px 80px;
-    }
-
-    h2 {
-      color: var(--teal);
-      font-size: 22px;
-      margin-top: 34px;
-      margin-bottom: 10px;
-      line-height: 1.25;
-    }
-
-    p, li {
-      font-size: 16px;
-      color: #344;
-    }
-
-    ul {
-      padding-left: 22px;
-    }
-
-    a {
-      color: var(--orange);
-    }
-
-    .date {
-      color: var(--muted);
-      margin-bottom: 28px;
-    }
-
-    .card {
-      background: var(--white);
-      border: 1px solid var(--cream-dark);
-      border-radius: 12px;
-      padding: 24px;
-      margin-top: 24px;
-      margin-bottom: 28px;
-    }
-
-    .footer-link {
-      margin-top: 42px;
-      padding-top: 24px;
-      border-top: 1px solid var(--cream-dark);
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Política de Privacidad — ETNOGRAPP</title>
+<meta name="description" content="Política de privacidad de ETNOGRAPP: local-first para el trabajo de campo, con una función de colaboración en línea opcional.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --teal: #1B3535; --teal-mid: #2A4E4E; --orange: #C87230;
+    --cream: #F7F4EF; --cream-dark: #EDE9E1; --text: #1B3535;
+    --muted: #5A7070; --white: #FFFFFF;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--text); font-size: 16px; line-height: 1.7; }
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(247,244,239,0.94); backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--cream-dark);
+    padding: 14px 32px; display: flex; align-items: center; justify-content: space-between;
+  }
+  nav img { height: 32px; }
+  nav a.cta { font-size: 14px; font-weight: 500; background: var(--teal); color: var(--white); padding: 8px 20px; border-radius: 4px; text-decoration: none; }
+  main { max-width: 760px; margin: 0 auto; padding: 130px 32px 80px; }
+  .eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--orange); display: block; margin-bottom: 14px; }
+  h1 { font-family: 'DM Serif Display', serif; font-size: clamp(32px, 5vw, 46px); line-height: 1.12; color: var(--teal); letter-spacing: -0.02em; margin-bottom: 10px; }
+  .updated { font-size: 14px; color: var(--muted); font-weight: 300; padding-bottom: 28px; border-bottom: 1px solid var(--cream-dark); margin-bottom: 36px; }
+  h2 { font-family: 'DM Serif Display', serif; font-size: 22px; color: var(--teal); margin: 38px 0 12px; }
+  p { margin-bottom: 16px; color: var(--text); font-weight: 300; }
+  ul { margin: 0 0 16px 22px; color: var(--text); font-weight: 300; }
+  li { margin-bottom: 7px; }
+  strong { font-weight: 500; }
+  a { color: var(--orange); }
+  .callout { background: var(--white); border: 1px solid var(--cream-dark); border-left: 3px solid var(--orange); border-radius: 6px; padding: 18px 22px; margin: 24px 0; }
+  .callout p:last-child { margin-bottom: 0; }
+  footer { text-align: center; padding: 36px 32px; font-size: 13px; color: var(--muted); border-top: 1px solid var(--cream-dark); }
+  @media (max-width: 600px) { nav { padding: 12px 20px; } main { padding: 104px 20px 60px; } }
+</style>
 </head>
-
 <body>
 
-<header>
-  <h1>Política de Privacidad de ETNOGRAPP</h1>
-  <p>No piensa por ti. Te acompaña a mirar.</p>
-</header>
+<nav>
+  <a href="/"><img src="logo.png" alt="ETNOGRAPP"></a>
+  <a class="cta" href="/">Volver</a>
+</nav>
 
 <main>
+  <span class="eyebrow">Legal</span>
+  <h1>Política de Privacidad</h1>
+  <p class="updated">Última actualización: 18 de octubre de 2026</p>
 
-  <p class="date">Última actualización: 05 de junio de 2026</p>
+  <p>ETNOGRAPP es una aplicación Android <strong>local-first</strong> diseñada para apoyar el registro, revisión y organización del trabajo de campo cualitativo, etnográfico, patrimonial, territorial, arqueológico, educativo y sociojurídico. Su filosofía es: <em>"No piensa por ti. Te acompaña a mirar."</em></p>
 
-  <div class="card">
-    <p>ETNOGRAPP es una aplicación móvil local-first diseñada para apoyar el registro, revisión y organización del trabajo de campo cualitativo, etnográfico, patrimonial, territorial, arqueológico, educativo y sociojurídico.</p>
-    <p>La filosofía de ETNOGRAPP es: <strong>“No piensa por ti. Te acompaña a mirar.”</strong></p>
+  <div class="callout">
+    <p><strong>En una frase:</strong> tu trabajo de campo (proyectos, observaciones, registros) vive en tu dispositivo y no se sube a ninguna nube. Solo una función opcional —<strong>Red de Campos</strong>, para colaborar con colegas— almacena en línea los datos que elijas publicar.</p>
   </div>
 
-  <h2>1. Responsable de la aplicación</h2>
-  <p>ETNOGRAPP es desarrollada y mantenida por <strong>José Alberto Silva Bermedo / Nahuelab.</strong></p>
-  <p>Contacto: <a href="mailto:etnograpp@gmail.com">etnograpp@gmail.com</a></p>
+  <h2>1. Responsable</h2>
+  <p>ETNOGRAPP es desarrollada y mantenida por <strong>José Alberto Silva Bermedo / Nahuelab</strong>. Contacto: <a href="mailto:etnograpp@gmail.com">etnograpp@gmail.com</a>.</p>
 
-  <h2>2. Principio general de privacidad</h2>
-  <p>ETNOGRAPP está diseñada para funcionar principalmente dentro del dispositivo del usuario.</p>
-  <p>La aplicación no utiliza servidor propio, no exige inicio de sesión, no crea cuentas de usuario y no sube automáticamente registros de campo a una nube propia.</p>
-  <p>Los proyectos, observaciones, revisiones, preguntas emergentes, circuitos, instrumentos, ética mínima y posicionalidad se guardan localmente en el dispositivo.</p>
+  <h2>2. Principio general</h2>
+  <p>La aplicación está diseñada para funcionar principalmente dentro del dispositivo del usuario. El trabajo de campo —proyectos, observaciones, revisiones, preguntas emergentes, circuitos, instrumentos, ética mínima, posicionalidad y notas metodológicas— se guarda localmente y no se sube automáticamente a ninguna nube.</p>
+  <p>Algunas funciones son opcionales y, solo si el usuario decide usarlas, implican datos en línea: el inicio de sesión con Google, la función de colaboración Red de Campos y las notificaciones de novedades. Se detallan más abajo.</p>
 
-  <h2>3. Datos que el usuario puede registrar</h2>
-  <p>ETNOGRAPP permite al usuario registrar información de trabajo de campo, como:</p>
+  <h2>3. Datos que el usuario registra (locales)</h2>
+  <p>El usuario puede registrar información de trabajo de campo, como: proyectos; observaciones; revisiones posteriores; preguntas emergentes; instrumentos de campo; circuitos y puntos de recorrido; posicionalidad; ética mínima; notas metodológicas; y ubicación GPS opcional en puntos de circuito. El contenido depende completamente del usuario y permanece en el dispositivo.</p>
+
+  <h2>4. Inicio de sesión con Google (opcional)</h2>
+  <p>La app puede usarse <strong>sin cuenta</strong>. El inicio de sesión con Google es opcional y sirve únicamente para identificar al usuario dentro de la función de colaboración (Red de Campos). Cuando se usa, ETNOGRAPP recibe el nombre y el correo asociados a la cuenta de Google. El trabajo de campo no se vincula a la cuenta ni se sincroniza por iniciar sesión.</p>
+
+  <h2>5. Red de Campos (colaboración opcional)</h2>
+  <p>Red de Campos es una función <strong>opt-in</strong>: solo participa quien lo decide expresamente. Si el usuario publica su perfil, los siguientes datos se almacenan en línea y pueden ser <strong>públicos</strong> dentro de la app:</p>
   <ul>
-    <li>proyectos de investigación o intervención;</li>
-    <li>observaciones de campo;</li>
-    <li>revisiones posteriores;</li>
-    <li>preguntas emergentes;</li>
-    <li>instrumentos de campo;</li>
-    <li>circuitos y puntos de recorrido;</li>
-    <li>información de posicionalidad;</li>
-    <li>información de ética mínima;</li>
-    <li>notas metodológicas;</li>
-    <li>ubicación GPS opcional en puntos de circuito.</li>
+    <li>Tarjeta profesional: nombre, cargo o rol, institución o afiliación, país o región, líneas de investigación y enlaces profesionales (por ejemplo LinkedIn u ORCID).</li>
+    <li>Avisos o convocatorias que el usuario publique.</li>
+    <li>Señales de interés ("pulsos de campo") entre perfiles.</li>
   </ul>
-  <p>El contenido registrado depende completamente del usuario.</p>
+  <p>El <strong>correo electrónico</strong> de contacto se guarda por separado y <strong>no es público</strong>: se revela a otra persona únicamente cuando ambas manifiestan interés mutuo. El usuario puede retirar su tarjeta, retirar sus pulsos, reportar contenido y bloquear perfiles en cualquier momento. El equipo puede retirar contenido o restringir cuentas que incumplan las condiciones de la comunidad.</p>
 
-  <h2>4. Ubicación GPS</h2>
-  <p>ETNOGRAPP puede solicitar permiso de ubicación para permitir que el usuario georreferencie puntos de circuito de campo.</p>
-  <p>El uso de GPS es opcional.</p>
-  <p>La ubicación se usa solo cuando el usuario decide registrar un punto georreferenciado dentro de la app.</p>
-  <p>ETNOGRAPP no usa ubicación en segundo plano.</p>
-  <p>ETNOGRAPP no rastrea desplazamientos continuos del usuario.</p>
-  <p>ETNOGRAPP no envía la ubicación a servidores propios.</p>
-  <p>La ubicación, cuando se registra, queda guardada localmente dentro del dispositivo y puede incluirse en la exportación TXT si el usuario decide exportar sus registros.</p>
+  <h2>6. Notificaciones de novedades (opcional)</h2>
+  <p>ETNOGRAPP puede enviar notificaciones con novedades, consejos o efemérides mediante Firebase Cloud Messaging. Para ello se utilizan identificadores de dispositivo gestionados por Firebase, sin asociarlos a tu trabajo de campo. Las novedades pueden desactivarse desde la propia app (sección Más) o desde los ajustes del teléfono, sin afectar los recordatorios de la agenda.</p>
 
-  <h2>5. Exportación de datos</h2>
-  <p>ETNOGRAPP permite exportar información en formato TXT.</p>
-  <p>La exportación queda bajo control del usuario.</p>
-  <p>El usuario decide si guarda, copia, comparte o respalda ese archivo por medios externos.</p>
-  <p>ETNOGRAPP no controla lo que el usuario haga con los archivos exportados una vez que salen de la aplicación.</p>
+  <h2>7. Ubicación GPS (opcional)</h2>
+  <p>ETNOGRAPP puede solicitar permiso de ubicación para que el usuario georreferencie puntos de circuito. El uso es opcional y solo ocurre cuando el usuario registra un punto. No se usa ubicación en segundo plano, no se rastrean desplazamientos y la ubicación no se envía a servidores de ETNOGRAPP: queda guardada localmente y puede incluirse en una exportación si el usuario lo decide.</p>
 
-  <h2>6. Datos compartidos con terceros</h2>
-  <p>ETNOGRAPP no vende datos personales.</p>
-  <p>ETNOGRAPP no comparte registros de campo con terceros.</p>
-  <p>ETNOGRAPP no envía datos a universidades, consultoras, empresas, anunciantes ni instituciones externas.</p>
-  <p>ETNOGRAPP no utiliza analítica externa, publicidad integrada ni herramientas de seguimiento de terceros en esta versión.</p>
+  <h2>8. Agenda y calendario (opcional)</h2>
+  <p>Si el usuario lo autoriza, la agenda de campo puede crear recordatorios y, con el permiso correspondiente, agregar eventos al calendario del teléfono. Este uso es opcional y bajo control del usuario.</p>
 
-  <h2>7. Almacenamiento local y eliminación</h2>
-  <p>Los datos se guardan localmente en el dispositivo.</p>
-  <p>El usuario puede eliminar proyectos desde la aplicación.</p>
-  <p>Al eliminar un proyecto, se eliminan sus registros asociados, incluyendo observaciones, revisiones, preguntas emergentes, circuitos, puntos, instrumentos, ética mínima y posicionalidad vinculada al proyecto.</p>
-  <p>Si el usuario desinstala la aplicación, los datos locales pueden eliminarse del dispositivo según el comportamiento del sistema Android.</p>
+  <h2>9. Proveedores y terceros</h2>
+  <p>Las funciones en línea (inicio de sesión, Red de Campos y notificaciones) se apoyan en servicios de <strong>Google Firebase</strong>: Authentication, Cloud Firestore y Cloud Messaging. Estos servicios procesan los datos descritos arriba conforme a la <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Política de Privacidad de Google</a>.</p>
+  <p>ETNOGRAPP no vende datos personales, no comparte registros de campo con terceros y no utiliza publicidad ni herramientas de analítica de seguimiento de terceros.</p>
 
-  <h2>8. Seguridad</h2>
-  <p>ETNOGRAPP busca reducir la exposición de datos manteniendo el funcionamiento local-first.</p>
-  <p>Sin embargo, el usuario es responsable de proteger su dispositivo, bloqueo de pantalla, respaldos externos y archivos exportados.</p>
-  <p>Se recomienda no registrar información sensible sin consentimiento, no exponer datos personales innecesarios y cuidar especialmente registros relacionados con comunidades, territorios, personas o situaciones protegidas.</p>
+  <h2>10. Exportación de datos</h2>
+  <p>El usuario puede exportar su material en TXT, Markdown o informe profesional (Word/PDF). La exportación queda bajo control del usuario, que decide si la guarda, copia, comparte o respalda. ETNOGRAPP no controla lo que ocurra con los archivos una vez que salen de la aplicación.</p>
 
-  <h2>9. Menores de edad</h2>
-  <p>ETNOGRAPP no está dirigida específicamente a niños.</p>
-  <p>La aplicación está pensada para estudiantes, investigadores, profesionales, equipos de campo y personas adultas o en formación que realizan trabajo cualitativo o territorial.</p>
+  <h2>11. Conservación y eliminación de datos</h2>
+  <p><strong>Datos locales:</strong> el usuario puede eliminar proyectos desde la app, lo que borra sus registros asociados. Desinstalar la aplicación elimina los datos locales según el comportamiento de Android.</p>
+  <p><strong>Datos de Red de Campos (en línea):</strong> el usuario puede retirar su tarjeta y sus publicaciones desde la app. Para eliminar la cuenta y los datos asociados en línea, puede solicitarlo escribiendo a <a href="mailto:etnograpp@gmail.com">etnograpp@gmail.com</a>; la solicitud se procesa de forma manual.</p>
 
-  <h2>10. Cambios en esta política</h2>
-  <p>Esta política puede actualizarse cuando ETNOGRAPP incorpore nuevas funciones, cambios técnicos o nuevas formas de uso.</p>
-  <p>La versión actualizada estará disponible en la página web oficial de ETNOGRAPP.</p>
+  <h2>12. Seguridad</h2>
+  <p>ETNOGRAPP está diseñada con un enfoque local-first para reducir la exposición innecesaria de datos. El usuario es responsable de proteger su dispositivo, su bloqueo de pantalla, sus respaldos y sus archivos exportados. Se recomienda no registrar información sensible sin consentimiento y cuidar especialmente los datos de comunidades, territorios o personas protegidas.</p>
 
-  <h2>11. Contacto</h2>
-  <p>Para consultas sobre privacidad o funcionamiento de ETNOGRAPP, puedes escribir a:</p>
-  <p><a href="mailto:etnograpp@gmail.com">etnograpp@gmail.com</a></p>
+  <h2>13. Menores de edad</h2>
+  <p>ETNOGRAPP no está dirigida a niños. Está pensada para estudiantes, investigadores, profesionales y equipos de campo adultos o en formación.</p>
 
-  <p class="footer-link"><a href="index.html">Volver a ETNOGRAPP</a></p>
+  <h2>14. Cambios en esta política</h2>
+  <p>Esta política puede actualizarse cuando ETNOGRAPP incorpore nuevas funciones o cambios técnicos. La versión vigente estará siempre disponible en la página web oficial de ETNOGRAPP.</p>
 
+  <h2>15. Contacto</h2>
+  <p>Para consultas sobre privacidad, funcionamiento o eliminación de datos: <a href="mailto:etnograpp@gmail.com">etnograpp@gmail.com</a>.</p>
 </main>
+
+<footer>ETNOGRAPP · etnograpp.com</footer>
+
 </body>
 </html>
