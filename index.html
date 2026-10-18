@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ETNOGRAPP — Cuaderno etnográfico inteligente</title>
-<meta name="description" content="Aplicación Android para trabajo de campo cualitativo. No piensa por ti. Te acompaña a mirar.">
+<meta name="description" content="Aplicación Android local-first para trabajo de campo cualitativo. No piensa por ti. Te acompaña a mirar.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -30,13 +30,9 @@
     padding: 14px 32px; display: flex; align-items: center; justify-content: space-between;
   }
   nav img { height: 32px; }
-  nav a {
-    font-size: 14px; font-weight: 500;
-    background: var(--teal); color: var(--white);
-    padding: 8px 20px; border-radius: 4px; text-decoration: none;
-    transition: background 0.2s;
-  }
-  nav a:hover { background: var(--teal-mid); }
+  nav .nav-links { display: flex; align-items: center; gap: 20px; }
+  nav a.nav-link { font-size: 14px; font-weight: 500; color: var(--teal); text-decoration: none; border-bottom: 1px solid var(--teal); padding-bottom: 2px; background: none; }
+  nav a.nav-link:hover { color: var(--orange); border-color: var(--orange); }
 
   .hero {
     min-height: 100vh; display: flex; flex-direction: column; justify-content: center;
@@ -54,7 +50,7 @@
     color: var(--teal); margin-bottom: 28px; letter-spacing: -0.02em;
   }
   .hero h1 em { font-style: italic; color: var(--orange); }
-  .hero-sub { font-size: 18px; color: var(--muted); font-weight: 300; max-width: 520px; line-height: 1.6; margin-bottom: 48px; }
+  .hero-sub { font-size: 18px; color: var(--muted); font-weight: 300; max-width: 540px; line-height: 1.6; margin-bottom: 48px; }
   .hero-cta { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
   .btn-primary {
     background: var(--teal); color: var(--white);
@@ -96,21 +92,18 @@
 
   .paises { background: var(--cream-dark); }
   .paises-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 12px; margin-top: 40px; }
-  .pais-card { background: var(--white); padding: 16px; border-radius: 4px; border: 1px solid var(--cream-dark); text-align: center; }
-  .pais-flag { font-size: 28px; margin-bottom: 6px; }
-  .pais-name { font-size: 13px; font-weight: 500; color: var(--teal); }
+  .pais-card { background: var(--white); padding: 20px 16px; border-radius: 4px; border: 1px solid var(--cream-dark); border-top: 3px solid var(--orange); text-align: center; }
+  .pais-name { font-size: 15px; font-weight: 500; color: var(--teal); }
   .paises-stat { margin-top: 40px; display: flex; gap: 48px; flex-wrap: wrap; }
   .stat-num { font-family: 'DM Serif Display', serif; font-size: 48px; color: var(--teal); line-height: 1; }
   .stat-label { font-size: 13px; color: var(--muted); margin-top: 4px; }
 
-  /* PROYECTO EN FORMACIÓN */
-  .formacion { background: var(--white); }
-  .formacion-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px; margin-top: 40px; }
-  .formacion-item { border-left: 2px solid var(--orange); padding-left: 20px; }
-  .formacion-item h3 { font-size: 14px; font-weight: 500; color: var(--teal); margin-bottom: 6px; }
-  .formacion-item p { font-size: 13px; color: var(--muted); line-height: 1.6; }
+  .novedades { background: var(--white); }
+  .novedades-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px; margin-top: 40px; }
+  .novedades-item { border-left: 2px solid var(--orange); padding-left: 20px; }
+  .novedades-item h3 { font-size: 14px; font-weight: 500; color: var(--teal); margin-bottom: 6px; }
+  .novedades-item p { font-size: 13px; color: var(--muted); line-height: 1.6; }
 
-  /* PRIVACIDAD */
   .privacidad { background: var(--teal); padding: 80px 32px; }
   .privacidad .section-label { color: var(--orange-light); }
   .privacidad .section-title { color: var(--white); }
@@ -123,7 +116,6 @@
   .privacidad-nota p { font-size: 14px; color: rgba(255,255,255,0.75); line-height: 1.7; }
   .privacidad-nota strong { color: var(--orange-light); }
 
-  /* BETA */
   .beta { background: var(--teal); text-align: center; padding: 100px 32px; border-top: 1px solid rgba(255,255,255,0.08); }
   .beta h2 { font-family: 'DM Serif Display', serif; font-size: clamp(32px, 5vw, 52px); color: var(--white); line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 20px; }
   .beta h2 em { color: var(--orange-light); font-style: italic; }
@@ -135,6 +127,7 @@
   footer { background: #111E1E; padding: 40px 32px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
   footer img { height: 28px; opacity: 0.8; }
   footer p { font-size: 13px; color: rgba(255,255,255,0.35); }
+  footer a { color: rgba(255,255,255,0.4); text-decoration: none; }
 
   @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
   .hero-tag { animation: fadeUp 0.6s ease both; }
@@ -158,18 +151,18 @@
 
 <nav>
   <img src="logo.png" alt="ETNOGRAPP">
-  <div style="display:flex; align-items:center; gap:20px;">
-    <a href="/reflexiones/" style="background:none; color:#1B3535; padding:0; border-radius:0; border-bottom:1px solid #1B3535;">Reflexiones</a>
-    <a href="politica-privacidad.html">Política de privacidad</a>
+  <div class="nav-links">
+    <a class="nav-link" href="/reflexiones/">Reflexiones</a>
+    <a class="nav-link" href="politica-privacidad.html">Política de privacidad</a>
   </div>
 </nav>
 
 <!-- HERO -->
 <div class="hero">
-  <span class="hero-tag">Android · Lanzamiento inicial · Local-first</span>
+  <span class="hero-tag">Android · Local-first · En uso en 4 países</span>
   <h1>El cuaderno de campo<br>que <em>no piensa</em><br>por ti.</h1>
   <p class="hero-sub">
-    ETNOGRAPP acompaña el trabajo metodológico previo al análisis: observación, revisión, unidades de campo y preguntas emergentes. Sin inteligencia artificial externa obligatoria. Sin nube propia.
+    ETNOGRAPP acompaña el trabajo metodológico previo al análisis: observación, revisión, unidades de campo y preguntas emergentes. Tus registros viven en tu dispositivo; la colaboración en línea es opcional.
   </p>
   <div class="hero-cta">
     <a href="#que-es" class="btn-primary">Conocer ETNOGRAPP</a>
@@ -177,7 +170,7 @@
   </div>
   <p class="hero-note">
     <span class="dot"></span>
-    Aplicación en lanzamiento inicial. El acceso se mantendrá claro, accesible y coherente con el desarrollo del proyecto.
+    Aplicación en desarrollo activo. El acceso se mantendrá claro, accesible y coherente con el crecimiento del proyecto.
   </p>
 </div>
 
@@ -192,7 +185,7 @@
       <br>
       <p>Ordena el trabajo metodológico <strong>antes del análisis</strong>: el registro, la revisión, las unidades de campo y las preguntas que emergen en terreno.</p>
       <br>
-      <p>Los datos viven en tu dispositivo. <strong>Sin servidor propio. Sin nube obligatoria.</strong></p>
+      <p>Tus proyectos y registros de campo <strong>viven en tu dispositivo</strong>. La colaboración profesional en línea es una función aparte y opcional.</p>
     </div>
   </div>
 </div>
@@ -226,13 +219,13 @@
       </div>
       <div class="que-es-item">
         <div class="que-es-num">05</div>
-        <h3>Coach metodológico</h3>
-        <p>Local, sin IA externa. Acompaña la formulación sin interpretar por ti.</p>
+        <h3>Acompañamiento metodológico</h3>
+        <p>Local, sin IA externa que interprete por ti. Acompaña la formulación, no la reemplaza.</p>
       </div>
       <div class="que-es-item">
         <div class="que-es-num">06</div>
-        <h3>Exportación TXT</h3>
-        <p>Material ordenado, listo para análisis posterior en NVivo, Atlas.ti u otros.</p>
+        <h3>Exportación</h3>
+        <p>Exporta en TXT, Markdown o informe profesional en Word y PDF, listo para NVivo, Atlas.ti u otros.</p>
       </div>
     </div>
   </div>
@@ -261,58 +254,52 @@
 <section class="paises">
   <div class="container">
     <span class="section-label">Comunidad inicial</span>
-    <h2 class="section-title">Ya en 10 países</h2>
-    <p class="section-body">Investigadores, tesistas, arqueólogos, trabajadores sociales y peritos que han acompañado las primeras pruebas y el desarrollo inicial.</p>
+    <h2 class="section-title">Ya en uso en 4 países</h2>
+    <p class="section-body">Investigadores, tesistas, arqueólogos, trabajadores sociales y peritos que acompañan las primeras pruebas y el desarrollo inicial.</p>
     <div class="paises-stat">
-      <div><div class="stat-num">27+</div><div class="stat-label">Investigadores activos</div></div>
-      <div><div class="stat-num">10</div><div class="stat-label">Países</div></div>
-      <div><div class="stat-num">v0.3</div><div class="stat-label">Versión actual</div></div>
+      <div><div class="stat-num">100+</div><div class="stat-label">Usuarios activos por día</div></div>
+      <div><div class="stat-num">4</div><div class="stat-label">Países</div></div>
+      <div><div class="stat-num">1.1</div><div class="stat-label">Versión actual</div></div>
     </div>
     <div class="paises-grid">
-      <div class="pais-card"><div class="pais-flag">🇨🇱</div><div class="pais-name">Chile</div></div>
-      <div class="pais-card"><div class="pais-flag">🇦🇷</div><div class="pais-name">Argentina</div></div>
-      <div class="pais-card"><div class="pais-flag">🇨🇴</div><div class="pais-name">Colombia</div></div>
-      <div class="pais-card"><div class="pais-flag">🇵🇪</div><div class="pais-name">Perú</div></div>
-      <div class="pais-card"><div class="pais-flag">🇲🇽</div><div class="pais-name">México</div></div>
-      <div class="pais-card"><div class="pais-flag">🇪🇸</div><div class="pais-name">España</div></div>
-      <div class="pais-card"><div class="pais-flag">🇪🇨</div><div class="pais-name">Ecuador</div></div>
-      <div class="pais-card"><div class="pais-flag">🇬🇹</div><div class="pais-name">Guatemala</div></div>
-      <div class="pais-card"><div class="pais-flag">🇩🇴</div><div class="pais-name">R. Dominicana</div></div>
-      <div class="pais-card"><div class="pais-flag">🌎</div><div class="pais-name">Y creciendo</div></div>
+      <div class="pais-card"><div class="pais-name">Colombia</div></div>
+      <div class="pais-card"><div class="pais-name">Chile</div></div>
+      <div class="pais-card"><div class="pais-name">México</div></div>
+      <div class="pais-card"><div class="pais-name">Argentina</div></div>
     </div>
   </div>
 </section>
 
-<!-- PROYECTO EN FORMACIÓN -->
-<section class="formacion">
+<!-- NOVEDADES / ESTADO REAL -->
+<section class="novedades">
   <div class="container">
-    <span class="section-label">Proyecto en formación</span>
-    <h2 class="section-title">Esto es solo el comienzo</h2>
-    <p class="section-body">ETNOGRAPP es un proyecto independiente en desarrollo activo. La versión actual es funcional y estable, pero hay mucho más por construir.</p>
-    <div class="formacion-grid">
-      <div class="formacion-item">
-        <h3>Módulo tesista</h3>
-        <p>Marco referencial como guía de observación, advertencias anti-calce teoría-campo, apoyo metodológico para tesis de pregrado y posgrado.</p>
+    <span class="section-label">En esta versión</span>
+    <h2 class="section-title">Qué incluye hoy</h2>
+    <p class="section-body">ETNOGRAPP es un proyecto independiente en desarrollo activo. Estas funciones ya están disponibles.</p>
+    <div class="novedades-grid">
+      <div class="novedades-item">
+        <h3>Diario, revisión y unidades</h3>
+        <p>El núcleo metodológico: registro situado, revisión posterior y unidades de campo conectadas.</p>
       </div>
-      <div class="formacion-item">
-        <h3>Fichas profesionales</h3>
-        <p>Fichas especializadas para arqueología, patrimonio, peritaje antropológico y medio humano SEIA, configurables por contexto.</p>
+      <div class="novedades-item">
+        <h3>Instrumentos y circuitos</h3>
+        <p>Guías de observación y entrevista, y recorridos de campo con puntos georreferenciados opcionales.</p>
       </div>
-      <div class="formacion-item">
-        <h3>Exportación avanzada</h3>
-        <p>Exportación estructurada por secciones, compatible con flujos de trabajo en NVivo, Atlas.ti y MAXQDA.</p>
+      <div class="novedades-item">
+        <h3>Agenda de campo</h3>
+        <p>Recordatorios de actividades que pueden integrarse con el calendario del teléfono.</p>
       </div>
-      <div class="formacion-item">
+      <div class="novedades-item">
+        <h3>Red de Campos (opcional)</h3>
+        <p>Directorio profesional para encontrar colegas por línea de investigación y territorio. El contacto es opt-in y se revela solo con interés mutuo.</p>
+      </div>
+      <div class="novedades-item">
         <h3>Multidioma</h3>
-        <p>Adaptación a tradiciones metodológicas en portugués, inglés y otros idiomas, con revisión académica por cada idioma.</p>
+        <p>Disponible en español, portugués e inglés.</p>
       </div>
-      <div class="formacion-item">
-        <h3>Instrumentos de campo</h3>
-        <p>Entrevistas semi-estructuradas, focus group, guías de observación derivadas del marco teórico.</p>
-      </div>
-      <div class="formacion-item">
-        <h3>Tu feedback importa</h3>
-        <p>Las primeras versiones existen para aprender de quienes hacen trabajo de campo real. Cada sugerencia informa las próximas mejoras.</p>
+      <div class="novedades-item">
+        <h3>Exportación profesional</h3>
+        <p>TXT y Markdown, más informes en Word y PDF para tu análisis posterior.</p>
       </div>
     </div>
   </div>
@@ -322,58 +309,58 @@
 <div class="privacidad" id="privacidad">
   <div class="container">
     <span class="section-label">Privacidad</span>
-    <h2 class="section-title" style="color: var(--white);">Tus datos son tuyos.<br>Siempre.</h2>
+    <h2 class="section-title" style="color: var(--white);">Tus registros de campo<br>son tuyos.</h2>
 
     <div class="privacidad-grid">
       <div class="privacidad-card">
         <span class="icono">📱</span>
-        <h3>Todo queda en tu dispositivo</h3>
-        <p>Todos tus proyectos, observaciones, diarios, unidades de campo y registros se almacenan exclusivamente en tu teléfono o tablet. Nunca salen de él.</p>
-      </div>
-      <div class="privacidad-card">
-        <span class="icono">🔒</span>
-        <h3>Sin servidor propio</h3>
-        <p>ETNOGRAPP no tiene servidores propios donde se almacenen datos de usuarios. No existe ninguna base de datos externa con tu información de campo.</p>
+        <h3>Tus registros son locales</h3>
+        <p>Proyectos, observaciones, diarios, unidades de campo y notas se guardan en tu teléfono. No se suben automáticamente a ninguna nube.</p>
       </div>
       <div class="privacidad-card">
         <span class="icono">✈️</span>
         <h3>Funciona sin internet</h3>
-        <p>Toda la funcionalidad de trabajo de campo opera completamente offline. No necesitas conexión para registrar, revisar ni exportar tu material.</p>
+        <p>Todo el trabajo de campo —registrar, revisar y exportar— opera completamente offline.</p>
       </div>
       <div class="privacidad-card">
-        <span class="icono">🚫</span>
-        <h3>Sin acceso técnico posible</h3>
-        <p>Al no conectarse a servidores externos durante el trabajo, técnicamente no existe ningún canal por el cual ETNOGRAPP o su desarrollador puedan acceder a tus datos.</p>
+        <span class="icono">☁️</span>
+        <h3>Colaboración opcional en la nube</h3>
+        <p>Red de Campos es opt-in. Solo si decides participar, tu tarjeta profesional y los avisos que publiques se guardan en Firebase (Google). Tu correo se revela únicamente con interés mutuo.</p>
+      </div>
+      <div class="privacidad-card">
+        <span class="icono">🔑</span>
+        <h3>Inicio de sesión opcional</h3>
+        <p>Puedes usar la app sin cuenta. El inicio de sesión con Google solo sirve para identificarte en la función de colaboración.</p>
       </div>
       <div class="privacidad-card">
         <span class="icono">🤝</span>
         <h3>Sin venta de datos</h3>
-        <p>ETNOGRAPP no recopila, analiza ni comercializa información sobre tu investigación, participantes, comunidades ni contextos de trabajo.</p>
+        <p>No comercializamos información sobre tu investigación, tus participantes, comunidades ni contextos de trabajo.</p>
       </div>
       <div class="privacidad-card">
         <span class="icono">📤</span>
-        <h3>Exportación bajo tu control</h3>
-        <p>Puedes exportar tu material en cualquier momento a tu propio dispositivo. Tú decides qué hacer con él y a dónde va.</p>
+        <h3>Control y eliminación</h3>
+        <p>Exporta tu material cuando quieras. Puedes retirar tu tarjeta y solicitar la eliminación de tu cuenta y datos escribiendo a etnograpp@gmail.com.</p>
       </div>
     </div>
 
     <div class="privacidad-nota">
-      <p><strong>Nota importante:</strong> ETNOGRAPP no utiliza formulario de registro dentro de la app. Si una persona contacta voluntariamente por correo para consultas o soporte, esa comunicación no se vincula con los datos de campo generados en la aplicación.</p>
+      <p><strong>En claro:</strong> el trabajo de campo (proyectos, observaciones, registros) vive en tu dispositivo. Solo lo que elijas publicar en Red de Campos —una función opcional— se almacena en la nube. Consulta el detalle en la <a href="politica-privacidad.html" style="color: var(--orange-light);">política de privacidad</a>.</p>
     </div>
   </div>
 </div>
 
 <!-- CTA -->
 <div class="beta" id="lanzamiento">
-  <h2>ETNOGRAPP<br><em>en lanzamiento inicial</em></h2>
-  <p>Una herramienta Android local-first para registrar, revisar y organizar trabajo de campo cualitativo con resguardo metodológico y privacidad local.</p>
+  <h2>ETNOGRAPP<br><em>en desarrollo activo</em></h2>
+  <p>Una herramienta Android local-first para registrar, revisar y organizar trabajo de campo cualitativo, con resguardo metodológico y privacidad en tu dispositivo.</p>
   <a href="politica-privacidad.html" class="btn-primary">Ver política de privacidad</a>
-  <p class="beta-note">Android · Local-first · Sin servidor propio · Datos en tu dispositivo · Proyecto independiente</p>
+  <p class="beta-note">Android · Local-first · Colaboración opcional · Registros de campo en tu dispositivo</p>
 </div>
 
 <footer>
   <img src="logo.png" alt="ETNOGRAPP">
-  <p>© 2026 ETNOGRAPP · Proyecto independiente · Chile · <a href="politica-privacidad.html" style="color: rgba(255,255,255,0.4); text-decoration: none;">Política de privacidad</a></p>
+  <p>© 2026 ETNOGRAPP · Proyecto independiente · Chile · <a href="politica-privacidad.html">Política de privacidad</a></p>
 </footer>
 
 </body>
